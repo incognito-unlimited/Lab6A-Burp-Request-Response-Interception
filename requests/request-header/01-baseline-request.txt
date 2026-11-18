@@ -1,0 +1,7 @@
+GET /vulnerabilities/fi/?page=file3.php HTTP/1.1
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (Lab6A dedicated profile)
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Cookie: PHPSESSID=[REDACTED]; security=impossible

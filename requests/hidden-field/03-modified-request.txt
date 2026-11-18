@@ -1,0 +1,10 @@
+POST /login.php HTTP/1.1
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (Lab6A dedicated profile)
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+Cookie: PHPSESSID=[REDACTED]; security=impossible
+
+username=[REDACTED]&password=[REDACTED]&Login=Login&user_token=INVALID_LAB_TEST_TOKEN

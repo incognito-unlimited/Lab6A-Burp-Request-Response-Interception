@@ -1,0 +1,25 @@
+# Local lab state - never publish
+*.log
+*.tmp
+*.der
+*.pem
+*.key
+*.p12
+*.pfx
+*.sqlite
+*.db
+*.burp
+*.burpdata
+burp-project/
+firefox-profile/
+profile/
+.DS_Store
+Thumbs.db
+
+# Generated office lock/temp files
+~$*.docx
+~$*.pdf
+
+# Python caches
+__pycache__/
+*.py[cod]

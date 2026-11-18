@@ -1,0 +1,60 @@
+{
+  "target": "http://127.0.0.1:8081",
+  "proxy": "http://127.0.0.1:8080",
+  "deployment": "Docker container lab6a-dvwa, image sagikazarmark/dvwa:latest, port 127.0.0.1:8081 -> 80",
+  "security_level": "impossible",
+  "scenarios": {
+    "hidden_field": {
+      "route": "POST /login.php (DVWA login form)",
+      "hidden_field": "user_token (anti-CSRF token)",
+      "original": {
+        "status": 302,
+        "location": "index.php"
+      },
+      "modified": {
+        "status": 302,
+        "location": "login.php",
+        "rejection_message": true
+      },
+      "value": "INVALID_LAB_TEST_TOKEN"
+    },
+    "session_cookie": {
+      "route": "GET /vulnerabilities/fi/?page=file3.php",
+      "cookie_name": "PHPSESSID",
+      "baseline": {
+        "status": 200,
+        "authenticated": true
+      },
+      "modified_value": "INVALID_LAB_TEST_SESSION",
+      "modified": {
+        "status": 302,
+        "location": "../../login.php"
+      },
+      "server_rejected": true
+    },
+    "request_header": {
+      "route": "GET /vulnerabilities/fi/?page=file3.php",
+      "header": "X-Forwarded-For",
+      "baseline": {
+        "status": 200,
+        "xff_reflected": false
+      },
+      "modified_value": "192.0.2.10",
+      "modified": {
+        "status": 200,
+        "xff_reflected": true
+      },
+      "ua_reflected_on_page": true
+    }
+  },
+  "baseline_unauthenticated": {
+    "status": 302,
+    "location": "login.php"
+  },
+  "baseline_authenticated": {
+    "status": 200,
+    "authenticated": true,
+    "ua_reflected": true,
+    "xff_reflected": false
+  }
+}
