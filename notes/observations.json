@@ -3,6 +3,11 @@
   "proxy": "http://127.0.0.1:8080",
   "deployment": "Docker container lab6a-dvwa, image sagikazarmark/dvwa:latest, port 127.0.0.1:8081 -> 80",
   "security_level": "impossible",
+  "tls": {
+    "burp_ca_installed_in_dedicated_firefox_profile": true,
+    "verification": "NSS CERT_FindCertByNickname and CERT_GetCertTrust; CERTDB_TRUSTED_CA set",
+    "live_https_exercised": false
+  },
   "scenarios": {
     "hidden_field": {
       "route": "POST /login.php (DVWA login form)",

@@ -1,0 +1,21 @@
+Lab 6A - Burp CA import verification
+==================================
+
+Scope: CN=PortSwigger CA installed only in the dedicated Firefox lab profile.
+No system, enterprise, or everyday browser store was modified.
+
+Import (Firefox NSS API on the dedicated profile):
+  OK CERT_DecodeCertFromPackage
+  OK CERT_DecodeTrustString("CT,,")
+  OK PK11_ImportCert
+  OK CERT_ChangeCertTrust
+  OK NSS_Shutdown
+
+Verify (new read-only NSS initialization):
+  OK CERT_FindCertByNickname: PortSwigger CA
+  OK CERT_GetCertTrust ssl=0xb8 email=0x0 object=0x0
+  VERIFIED: PortSwigger CA is a trusted CA in the dedicated Firefox profile
+  NSS_Shutdown: ok
+
+CERTDB_TRUSTED_CA (0x10) is set.
+Limitation: DVWA is HTTP-only; no live TLS exchange was available.

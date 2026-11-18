@@ -21,9 +21,9 @@ intentionally vulnerable DVWA instance.
   and loopback hijacking enabled. No normal browser profile was changed.
 - Captured traffic was produced by a local test client routed through the same
   loopback Burp listener.
-- Burp CA certificate downloaded from `http://burp/cert` for optional HTTPS
-  interception. It was not installed in any browser store because the target is
-  HTTP-only and no TLS exchange was available.
+- Burp CA certificate downloaded from `http://burp/cert` and imported only into
+  the dedicated Firefox lab profile. NSS verification confirmed `PortSwigger CA`
+  as a trusted CA; no system, enterprise, or everyday browser store was changed.
 - DVWA security level: `impossible`.
 - Target is HTTP-only; HTTPS interception was configured but not exercised against live TLS traffic.
 
@@ -52,13 +52,14 @@ intentionally vulnerable DVWA instance.
 - `evidence/` — genuine, redacted screenshots from the lab run.
 - `requests/` — sanitized request/response text captured through Burp.
 - `notes/observations.json` and `notes/observations.md` — structured observations.
+- `notes/burp-ca-import-verification.txt` — sanitized CA import/verification output.
 - `.gitignore` — excludes browser profiles, Burp project data, certificates, keys, and office lock files.
 
 ## Limitations
 
-- The isolated DVWA target is HTTP-only, so TLS interception was configured but could not be
-  verified against a live HTTPS exchange. Consequently the downloaded Burp CA was not
-  installed in any browser certificate store.
+- The isolated DVWA target is HTTP-only, so TLS interception could not be verified against
+  a live HTTPS exchange. The Burp CA was installed only in the dedicated Firefox profile
+  and verified there, but no TLS traffic was intercepted.
 - Header testing covered one reflective route; the result does not establish a trust-boundary
   vulnerability or an access-control bypass.
 - Findings apply only to the local lab instance.

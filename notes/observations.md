@@ -38,6 +38,7 @@ Burp proxy: `http://127.0.0.1:8080` · Security level: `impossible`
 
 ## Limitations
 
-- HTTPS interception was configured, but the target is HTTP-only; no TLS exchange was available.
+- HTTPS interception was configured and the Burp CA was trusted in the dedicated Firefox
+  profile, but the target is HTTP-only; no TLS exchange was available.
 - Header test covers one route and does not prove a trust-boundary vulnerability.
 - No credentials, live cookies, or live tokens are stored in this repository.
